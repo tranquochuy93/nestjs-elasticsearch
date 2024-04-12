@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+      "lib": ["ES2020", "ESNext"],
+      "module": "commonjs",
+      "declaration": true,
+      "removeComments": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "target": "es2017",
+      "sourceMap": true,
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "incremental": true,
+      //because it enables the importing package.json (a "JsonModule"), and that forces rootDir to automatically get set to the directory that contains all the source (i.e. including package.json), and now the src dir is no longer the rootDir but a subdir, and so reflected in the output
+      //stackoverflow.com/a/61467483/8910547
+      // 1. "resolveJsonModule": true,
+      // 2. If there is a similar file name outside of src folder, forces rootDir to the directory that contains all the source
+      "paths": {
+          "~*": ["src/*"]
+      },
+      "typeRoots": ["./node_modules/@types", "./@types"]
+  },
+  "ts-node": {
+      "files": true
+  }
+}

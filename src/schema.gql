@@ -1,0 +1,78 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserEntity {
+  id: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  language: String!
+  lastLoginAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type BillingEntity {
+  id: String!
+  name: String!
+  totalOfPrice: Float!
+  userId: String!
+  productBillings: [ProductBillingEntity!]!
+}
+
+type ProductBillingEntity {
+  amountOfProduct: Float!
+  productId: String!
+  billingId: String!
+  product: ProductEntity!
+}
+
+type ProductEntity {
+  id: String!
+  name: String!
+  price: Float!
+}
+
+type Query {
+  users: [UserEntity!]!
+  findProducts: [ProductEntity!]!
+  findProductsByText(text: String!): [ProductEntity!]!
+  billings: [BillingEntity!]!
+}
+
+type Mutation {
+  upsertUser(upsertUserInput: UpsertUserInput!): UserEntity!
+  upsertProduct(upsertProductDto: UpsertProductDto!): ProductEntity!
+  upsertBilling(upsertBillingDto: UpsertBillingDto!): BillingEntity!
+}
+
+input UpsertUserInput {
+  id: String
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}
+
+input UpsertProductDto {
+  id: String
+  name: String!
+  price: Float!
+}
+
+input UpsertBillingDto {
+  id: String
+  name: String!
+  userId: String!
+  productBillings: [ProductBillingDto!]!
+}
+
+input ProductBillingDto {
+  productId: String!
+  amountOfProduct: Float!
+}

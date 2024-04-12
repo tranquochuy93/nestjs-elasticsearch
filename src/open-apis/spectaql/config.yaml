@@ -1,0 +1,34 @@
+spectaql:
+  logoFile: ${BACKEND_URL}/static/spectaqls/images/death.png
+  faviconFile: ./test/fixtures/favicon.png
+  displayAllServers: true
+  targetDir: src/static/spectaqls
+
+introspection:
+  removeTrailingPeriodFromDescriptions: false
+  schemaFile: src/schema.gql
+  # metadataFile: ./examples/data/metadata.json
+  # dynamicExamplesProcessingModule: ./examples/customizations/examples
+  queryNameStrategy: capitalizeFirst
+  fieldExpansionDepth: 5
+
+  spectaqlDirective:
+    enable: true
+
+extensions:
+  graphqlScalarExamples: true
+
+info:
+  title: Static Graphql API Document
+  description: ${BACKEND_URL}/graphql
+  x-introItems:
+    - title: This is demo graphql api
+      description: Some important stuff we wanted you to know. Supports `markdown`
+
+servers:
+  - url: ${BACKEND_URL}/graphql
+    description: Playground
+    headers:
+      - name: Authorization
+        example: Bearer <YOUR_TOKEN_HERE>
+        comment: Your foo from bar
