@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { FindManyOptions } from 'typeorm';
 import { ProductEntity } from '~products/entities/product.entity';
-import { UpsertProductDto } from '~products/http/dto/upsert-product.dto';
+import { UpsertProductInput } from '~products/inputs/upsert-product.input';
 import { ProductRepository } from '~products/repositories/product.repository';
 import ProductSearchService from '~search-engine/services/product-search.service';
 
@@ -9,7 +9,7 @@ import ProductSearchService from '~search-engine/services/product-search.service
 export class ProductService {
     constructor(private productRepo: ProductRepository, private productSearchService: ProductSearchService) {}
 
-    async upsertOne(dto: UpsertProductDto): Promise<ProductEntity> {
+    async upsertOne(dto: UpsertProductInput): Promise<ProductEntity> {
         const { id } = dto;
         if (id) {
             await this.productRepo.findOneOrFail({ where: { id } });

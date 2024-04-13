@@ -1,8 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ProductEntity } from '~products/entities/product.entity';
-import { UpsertProductDto } from '~products/http/dto/upsert-product.dto';
 import { ProductService } from '~products/services/product.service';
 import { plainToClass } from 'class-transformer';
+import { UpsertProductInput } from '~products/inputs/upsert-product.input';
 
 
 @Resolver(() => ProductEntity)
@@ -21,7 +21,7 @@ export class ProductResolver {
     }
 
     @Mutation(() => ProductEntity)
-    upsertProduct(@Args('upsertProductDto') dto: UpsertProductDto): Promise<ProductEntity> {
+    upsertProduct(@Args('upsertProductDto') dto: UpsertProductInput): Promise<ProductEntity> {
         return this.productService.upsertOne(dto);
     }
 }

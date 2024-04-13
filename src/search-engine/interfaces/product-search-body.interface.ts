@@ -1,5 +1,5 @@
 
-interface ProductSearchBody {
+export interface ProductSearchBody {
     id: string,
     name: string
   }

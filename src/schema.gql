@@ -40,6 +40,7 @@ type ProductEntity {
 
 type Query {
   users: [UserEntity!]!
+  findByText(text: String!): [UserEntity!]!
   findProducts: [ProductEntity!]!
   findProductsByText(text: String!): [ProductEntity!]!
   billings: [BillingEntity!]!
@@ -47,7 +48,8 @@ type Query {
 
 type Mutation {
   upsertUser(upsertUserInput: UpsertUserInput!): UserEntity!
-  upsertProduct(upsertProductDto: UpsertProductDto!): ProductEntity!
+  deleteUserById(deleteUserInput: DeleteUserInput!): UserEntity!
+  upsertProduct(upsertProductDto: UpsertProductInput!): ProductEntity!
   upsertBilling(upsertBillingDto: UpsertBillingDto!): BillingEntity!
 }
 
@@ -59,7 +61,11 @@ input UpsertUserInput {
   password: String!
 }
 
-input UpsertProductDto {
+input DeleteUserInput {
+  id: String!
+}
+
+input UpsertProductInput {
   id: String
   name: String!
   price: Float!
