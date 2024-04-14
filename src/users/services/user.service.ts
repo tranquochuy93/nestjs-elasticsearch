@@ -39,7 +39,6 @@ export class UserService {
         }
 
         const newUser = await this.userRepo.save(dto);
-        console.log(newUser)
         this.userSearchService.indexUser(newUser);
 
         return newUser;
